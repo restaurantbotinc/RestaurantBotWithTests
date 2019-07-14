@@ -1,6 +1,8 @@
 const dateFormat = require("dateformat");
 const restaurant = require("./restaurant");
 
+let id = 0;
+
 const parser = str => {
   //"Reservations for NAME at DATE @ TIME"
   str = str.replace(/[.,\/#!$%\^&\*;@{}=\-_`~()]/g, "").split(" "); //['reservations', 'for'...]
@@ -9,8 +11,8 @@ const parser = str => {
   const createdAt = new Date();
 
   let date = dateFormat(dateTime, "isoDateTime");
-
   date = new Date(date);
+  let offsetDate = date.setHours(date.getHours() - 4);
 
   const restaurantOpen = parseInt(restaurant.openingTime);
   const restaurantClose = parseInt(restaurant.closingTime);
@@ -21,8 +23,8 @@ const parser = str => {
   ) {
     return null;
   }
-
-  return { name, date, createdAt };
+  id++;
+  return { id, name, date, createdAt };
 };
 
 module.exports = parser;

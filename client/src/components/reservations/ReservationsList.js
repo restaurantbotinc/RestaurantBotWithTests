@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { prettyTime, filterTime } from "../../clientUtils";
 
 class ReservationsList extends Component {
   state = {
@@ -11,14 +12,28 @@ class ReservationsList extends Component {
       .then(reservations => this.setState({ reservations }));
   }
 
+  /*
+  {
+    id: 2,
+    name: 'Paul Hollywood',
+    date: 2019-12-25T19:00:00.000Z,
+    createdAt: 2019-07-14T18:32:01.540Z,
+    phoneNumber: '+15306931524'
+  }
+  */
+
   render() {
+    let filteredArray = filterTime(this.state.reservations);
     return (
       <div className="App">
         <h1>Reservations</h1>
-        {this.state.reservations.map(reservation => (
-          <div key={reservation.id}>
-            {reservation.name} {reservation.date}
-          </div>
+        {filteredArray.map(reservation => (
+          <ul key={reservation.id}>
+            <li>
+              <em>{reservation.name}</em> has a reservation on{" "}
+              {prettyTime(reservation.date)}
+            </li>
+          </ul>
         ))}
       </div>
     );

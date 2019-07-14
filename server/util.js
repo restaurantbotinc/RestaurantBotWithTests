@@ -12,8 +12,6 @@ const parser = str => {
 
   date = new Date(date);
 
-  const dummyDate = new Date(date);
-
   const restaurantOpen = parseInt(restaurant.openingTime);
   const restaurantClose = parseInt(restaurant.closingTime);
 

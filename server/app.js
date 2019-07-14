@@ -26,6 +26,7 @@ app.use("/", indexRouter);
 app.use("/reservations", reservationsRouter);
 
 let resList = [];
+module.exports.resList = resList;
 
 app.post("/sms", (req, res) => {
   const twiml = new MessagingResponse();

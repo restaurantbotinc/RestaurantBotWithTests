@@ -10,12 +10,18 @@ const parser = str => {
   const dateTime = str.slice(5).join(" ");
   const createdAt = new Date();
 
+  //"Res for Paul Hollywood at July 18, 2019 23:00"
+
   let date = dateFormat(dateTime, "isoDateTime");
+  console.log("Formated date:", date);
+  //2019-07-13T19:00:00-0400
+
   date = new Date(date);
-  let offsetDate = date.setHours(date.getHours() - 4);
 
   const restaurantOpen = parseInt(restaurant.openingTime);
   const restaurantClose = parseInt(restaurant.closingTime);
+
+  console.log("Restaurant Open/Close: ", restaurantOpen, date.getHours());
 
   if (
     date.getHours() < restaurantOpen ||

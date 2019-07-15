@@ -16,6 +16,7 @@ export const prettyTime = date => {
 */
 
 export const filterTime = dateArray => {
+  console.log(dateArray);
   return dateArray.filter(
     obj => obj.date > dateFormat(Date.now(), "isoDateTime")
   );

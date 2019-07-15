@@ -14,13 +14,20 @@ Also install ngrok and have a Twilio account.
 
 ## Try It
 
+Start the client:
+
 cd client
+
 npm start
 
+Start the sever:
+
 cd server
+
 npm start
 
 ./ngrok http 3001
+
 (Make sure to update the Forwarding address from you terminal in your Twilio account)
 
 ## Contributors

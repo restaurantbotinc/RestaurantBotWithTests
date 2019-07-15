@@ -4,7 +4,12 @@
   "private": true,
   "dependencies": {
     "dateformat": "^3.0.3",
+<<<<<<< HEAD
     "human-date": "^1.4.0",
+=======
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-15": "^1.4.0",
+>>>>>>> 10c1e6cae1d5ac05a4326122d16d0721366a2ba9
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
@@ -30,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme-adapter-react-16": "^1.14.0",
+    "react-test-renderer": "^16.8.6"
   }
 }

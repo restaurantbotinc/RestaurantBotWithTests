@@ -8,6 +8,8 @@ const MessagingResponse = require("twilio").twiml.MessagingResponse;
 
 var indexRouter = require("./routes/index");
 var reservationsRouter = require("./routes/reservations");
+// var slackReservationsRouter = require("./routes/slackReservations");
+
 var parser = require("./util.js");
 
 var app = express();
@@ -23,12 +25,37 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/reservations", (req, res, next) => {
-  res.send("reservationsRouter");
-});
+app.use("/reservations", reservationsRouter);
+// app.use("/slackReservations", slackReservationsRouter);
 
 let resList = [];
+// let slackList = [];
 module.exports.resList = resList;
+// module.exports.slackList = slackList;
+
+app.post("/slack", (req, res) => {
+  console.log(req.body);
+  const body = req.body.text;
+  const user_name = req.body.user_name;
+  const parsedSlack = parser(body);
+  parsedSlack["userName"] = user_name;
+  resList.push(parsedSlack);
+  console.log(resList);
+
+  // controller.on.slashCommand.replyPrivate(message, "what the heck");
+
+  // if (parsedSlack === null) {
+  //   slashCommand.replyPrivate(
+  //     message,
+  //     "The restaurant is not open during that time. Make a new reservation"
+  //   );
+  //   return;
+  // } else {
+  //   slackList.push(parsedSlack);
+  //   slashCommand.replyPrivate(message, "Thank you for making a reservation.");
+  //   return;
+  // }
+});
 
 app.post("/sms", (req, res) => {
   const twiml = new MessagingResponse();

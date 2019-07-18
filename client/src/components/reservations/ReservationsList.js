@@ -7,6 +7,7 @@ class ReservationsList extends Component {
   };
 
   componentDidMount() {
+    console.log("componentdidmount");
     fetch("reservations")
       .then(res => res.json())
       .then(reservations => this.setState({ reservations }));
@@ -23,6 +24,7 @@ class ReservationsList extends Component {
   */
 
   render() {
+    console.log("hitting render?", this.state);
     let filteredArray = filterTime(this.state.reservations);
     return (
       <div className="App">

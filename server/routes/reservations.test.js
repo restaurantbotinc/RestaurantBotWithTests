@@ -6,7 +6,7 @@ const router = require("./index");
 describe("GET requests", () => {
   it("GET responds with an empty object at first", () => {
     // when we make requests to `/` we will get back an object
-    return supertest // supertest object lets us make & test HTTP req/res
+    return supertest(app) // supertest object lets us make & test HTTP req/res
       .get("/") // makes an HTTP request: GET '/'
       .expect(200) // tests response status code
       .expect(res => {

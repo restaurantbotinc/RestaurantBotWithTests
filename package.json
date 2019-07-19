@@ -7,6 +7,10 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-arrow-functions": "^7.2.0",
+    "@babel/preset-env": "^7.5.5",
+    "babel-jest": "^24.8.0",
     "cookie-parser": "^1.4.4",
     "dateformat": "^3.0.3",
     "debug": "~2.6.9",

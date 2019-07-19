@@ -24,6 +24,8 @@ class ReservationsList extends Component {
 
   render() {
     let filteredArray = filterTime(this.state.reservations);
+    filteredArray = filteredArray.sort((a, b) => ((a.date, b.date) ? -1 : 1));
+
     return (
       <div className="App">
         <h1>Reservations</h1>

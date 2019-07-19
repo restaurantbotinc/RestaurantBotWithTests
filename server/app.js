@@ -8,6 +8,7 @@ const MessagingResponse = require("twilio").twiml.MessagingResponse;
 
 var indexRouter = require("./routes/index");
 var reservationsRouter = require("./routes/reservations");
+
 var parser = require("./util.js");
 
 var app = express();
@@ -23,12 +24,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/reservations", (req, res, next) => {
-  res.send("reservationsRouter");
-});
+app.use("/reservations", reservationsRouter);
 
 let resList = [];
 module.exports.resList = resList;
+
+//SLACK BOT: https://gitlab.frmwrk.nl/frmwrk-general/codebot/commit/6d4fd31513cdce46624936d1a607fa91f1edb32d?view=inline
+
+app.post("/slack", (req, res) => {
+  console.log(req.body);
+  const body = req.body.text;
+  const user_name = req.body.user_name;
+  const parsedSlack = parser(body);
+  parsedSlack["userName"] = user_name;
+  resList.push(parsedSlack);
+  console.log(resList);
+  res.send("Submitted");
+});
 
 app.post("/sms", (req, res) => {
   const twiml = new MessagingResponse();

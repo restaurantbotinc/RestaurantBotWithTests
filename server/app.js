@@ -8,7 +8,6 @@ const MessagingResponse = require("twilio").twiml.MessagingResponse;
 
 var indexRouter = require("./routes/index");
 var reservationsRouter = require("./routes/reservations");
-// var slackReservationsRouter = require("./routes/slackReservations");
 
 var parser = require("./util.js");
 
@@ -26,12 +25,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/reservations", reservationsRouter);
-// app.use("/slackReservations", slackReservationsRouter);
 
 let resList = [];
-// let slackList = [];
 module.exports.resList = resList;
-// module.exports.slackList = slackList;
+
+//SLACK BOT: https://gitlab.frmwrk.nl/frmwrk-general/codebot/commit/6d4fd31513cdce46624936d1a607fa91f1edb32d?view=inline
 
 app.post("/slack", (req, res) => {
   console.log(req.body);
@@ -41,20 +39,7 @@ app.post("/slack", (req, res) => {
   parsedSlack["userName"] = user_name;
   resList.push(parsedSlack);
   console.log(resList);
-
-  // controller.on.slashCommand.replyPrivate(message, "what the heck");
-
-  // if (parsedSlack === null) {
-  //   slashCommand.replyPrivate(
-  //     message,
-  //     "The restaurant is not open during that time. Make a new reservation"
-  //   );
-  //   return;
-  // } else {
-  //   slackList.push(parsedSlack);
-  //   slashCommand.replyPrivate(message, "Thank you for making a reservation.");
-  //   return;
-  // }
+  res.send("Submitted");
 });
 
 app.post("/sms", (req, res) => {

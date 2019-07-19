@@ -16,7 +16,7 @@ describe("GET requests", () => {
 
   it("GET /reservations responds with an empty object at first", () => {
     // when we make requests to `/reservations` we will get back an json object
-    return supertest // supertest object lets us make & test HTTP req/res
+    return supertest(app) // supertest object lets us make & test HTTP req/res
       .get("/reservations") // makes an HTTP request: GET '/reservations'
       .expect(200) // tests response status code
       .expect(res => {

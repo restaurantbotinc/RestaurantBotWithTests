@@ -7,7 +7,6 @@ class ReservationsList extends Component {
   };
 
   componentDidMount() {
-    console.log("componentdidmount");
     fetch("reservations")
       .then(res => res.json())
       .then(reservations => this.setState({ reservations }));
@@ -24,8 +23,9 @@ class ReservationsList extends Component {
   */
 
   render() {
-    console.log("hitting render?", this.state);
     let filteredArray = filterTime(this.state.reservations);
+    filteredArray = filteredArray.sort((a, b) => ((a.date, b.date) ? -1 : 1));
+
     return (
       <div className="App">
         <h1>Reservations</h1>
